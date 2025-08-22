@@ -1,0 +1,88 @@
+<%- include('partials/header.ejs'); -%>
+
+  <script>
+    // Appliquer le thème au body
+    document.body.className = 'theme-<%= currentUser.color %>';
+  </script>
+
+  <div class="user-selector">
+    <h2>Family Todo</h2>
+    <form action="/changeUser" method="post" class="user-buttons">
+      <% for (let user of users) { %>
+        <button type="submit" name="userId" value="<%= user.user_id %>"
+          class="user-btn theme-<%= user.color %> <%= currentUser.user_id === user.user_id ? 'active' : '' %>">
+          <%= user.name %>
+        </button>
+        <% } %>
+    </form>
+
+    <form action="/addUser" method="post" class="add-user-form">
+      <button type="submit" class="add-user-btn">+ Add Member</button>
+    </form>
+  </div>
+
+  <%# Si c'est le premier chargement afficher la card du premier chargement %>
+    <% if (firstLoad) { %>
+      <div class="first-load-card">
+        <div class="welcome-icon">🏠</div>
+        <h2>Welcome to Family Todo!</h2>
+        <p>Organize your family in style! Create personalized to-do lists with colorful themes for each family member.
+        </p>
+        <div class="get-started-hint">
+          <span>👪</span>
+          <span>Start by adding a family member</span>
+        </div>
+      </div>
+      <% } else { %>
+
+
+
+        <div class="box" id="heading">
+          <h1>
+            <%= listTitle %>
+          </h1>
+        </div>
+
+        <div class="box">
+          <% for(let item of listItems){%>
+            <div class="item">
+              <form action="/delete" method="post">
+                <input type="checkbox" onchange="this.form.submit()" name="deleteItemId" value="<%= item.item_id %>">
+              </form>
+
+              <p id="title<%=item.item_id%>">
+                <%= item.title %>
+              </p>
+
+              <form class="edit" action="/edit" method="post">
+                <input type="hidden" name="updatedItemId" value="<%= item.item_id %>">
+                <input id="input<%=item.item_id%>" type="text" name="updatedItemTitle" value="<%= item.title %>"
+                  autocomplete="off" autofocus="true" hidden="true" />
+                <button id="done<%=item.item_id%>" class="edit" type="submit" hidden>
+                 <img  class="icon" src="/assets/icons/check-solid-<%= currentUser.color %>.svg" alt="tick image">
+                </button>
+              </form>
+              <button id="edit<%=item.item_id%>" class="edit" onclick="handler('<%=item.item_id%>')">
+                <img class="icon" src="/assets/icons/pencil-solid-<%= currentUser.color %>.svg" alt="edit image">
+              </button>
+            </div>
+            <% } %>
+
+              <form class="item" action="/add" method="post">
+                <input type="text" name="newItem" placeholder="<%= addOk %>" autocomplete="off" autofocus="true" />
+                <button class="add" type="submit" name="list" value="<%=listTitle%>">+</button>
+              </form>
+        </div>
+
+        <script>
+          function handler(id) {
+            document.getElementById("title" + id).hidden = true;
+            document.getElementById("edit" + id).hidden = true;
+            document.getElementById("done" + id).hidden = false;
+            document.getElementById("input" + id).hidden = false;
+          }
+        </script>
+
+        <% } %>
+
+          <%- include('partials/footer.ejs'); -%>

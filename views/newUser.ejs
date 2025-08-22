@@ -1,0 +1,154 @@
+<%- include('partials/header.ejs'); -%>
+    <link rel="stylesheet" href="/styles/new.css">
+
+    <div class="new-user-container">
+        <div class="box">
+            <div id="heading">
+                <h1>Add New Family Member</h1>
+            </div>
+
+            <form action="/createUser" method="post" class="new-user-form">
+                <div class="input-group">
+                    <input type="text" name="username" placeholder="Enter name" required />
+                </div>
+
+                <div class="color-selection">
+                    <h3>Choose Your Theme Color</h3>
+                    <div class="color-options">
+                        <label class="color-option">
+                            <input type="radio" name="color" value="purple-blue">
+                            <div class="color-preview purple-blue">
+                                <div class="color-primary"></div>
+                                <div class="color-secondary"></div>
+                            </div>
+                            <span>Purple Blue</span>
+                        </label>
+
+                        <label class="color-option">
+                            <input type="radio" name="color" value="blue">
+                            <div class="color-preview blue">
+                                <div class="color-primary"></div>
+                                <div class="color-secondary"></div>
+                            </div>
+                            <span>Blue</span>
+                        </label>
+
+                        <label class="color-option">
+                            <input type="radio" name="color" value="teal">
+                            <div class="color-preview teal">
+                                <div class="color-primary"></div>
+                                <div class="color-secondary"></div>
+                            </div>
+                            <span>Teal</span>
+                        </label>
+
+                        <label class="color-option">
+                            <input type="radio" name="color" value="coral">
+                            <div class="color-preview coral">
+                                <div class="color-primary"></div>
+                                <div class="color-secondary"></div>
+                            </div>
+                            <span>Coral</span>
+                        </label>
+
+                        <label class="color-option">
+                            <input type="radio" name="color" value="green">
+                            <div class="color-preview green">
+                                <div class="color-primary"></div>
+                                <div class="color-secondary"></div>
+                            </div>
+                            <span>Green</span>
+                        </label>
+
+                        <label class="color-option">
+                            <input type="radio" name="color" value="orange">
+                            <div class="color-preview orange">
+                                <div class="color-primary"></div>
+                                <div class="color-secondary"></div>
+                            </div>
+                            <span>Orange</span>
+                        </label>
+
+                        <label class="color-option">
+                            <input type="radio" name="color" value="red">
+                            <div class="color-preview red">
+                                <div class="color-primary"></div>
+                                <div class="color-secondary"></div>
+                            </div>
+                            <span>Red</span>
+                        </label>
+
+                        <label class="color-option">
+                            <input type="radio" name="color" value="pink">
+                            <div class="color-preview pink">
+                                <div class="color-primary"></div>
+                                <div class="color-secondary"></div>
+                            </div>
+                            <span>Pink</span>
+                        </label>
+
+                        <label class="color-option">
+                            <input type="radio" name="color" value="indigo">
+                            <div class="color-preview indigo">
+                                <div class="color-primary"></div>
+                                <div class="color-secondary"></div>
+                            </div>
+                            <span>Indigo</span>
+                        </label>
+
+                        <label class="color-option">
+                            <input type="radio" name="color" value="cyan">
+                            <div class="color-preview cyan">
+                                <div class="color-primary"></div>
+                                <div class="color-secondary"></div>
+                            </div>
+                            <span>Cyan</span>
+                        </label>
+
+                        <label class="color-option">
+                            <input type="radio" name="color" value="lime">
+                            <div class="color-preview lime">
+                                <div class="color-primary"></div>
+                                <div class="color-secondary"></div>
+                            </div>
+                            <span>Lime</span>
+                        </label>
+
+                        <label class="color-option">
+                            <input type="radio" name="color" value="amber">
+                            <div class="color-preview amber">
+                                <div class="color-primary"></div>
+                                <div class="color-secondary"></div>
+                            </div>
+                            <span>Amber</span>
+                        </label>
+
+                        <label class="color-option">
+                            <input type="radio" name="color" value="deep-orange">
+                            <div class="color-preview deep-orange">
+                                <div class="color-primary"></div>
+                                <div class="color-secondary"></div>
+                            </div>
+                            <span>Deep Orange</span>
+                        </label>
+
+                        <label class="color-option">
+                            <input type="radio" name="color" value="brown">
+                            <div class="color-preview brown">
+                                <div class="color-primary"></div>
+                                <div class="color-secondary"></div>
+                            </div>
+                            <span>Brown</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button type="submit" class="btn-primary">Create Member</button>
+                    <button type="button" class="btn-secondary" onclick="window.location.href='/'">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <%- include('partials/footer.ejs'); -%>
