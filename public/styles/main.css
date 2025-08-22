@@ -1,9 +1,3 @@
-/* Variables CSS pour les thèmes */
-:root {
-  --primary-color: #a683e3;
-  --secondary-color: #dbe2ef;
-}
-
 /* Thèmes colorés - Application au body pour être globales */
 body.theme-purple-blue {
   --primary-color: #a683e3;
