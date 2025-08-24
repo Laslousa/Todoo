@@ -13,7 +13,7 @@
 }
 
 .new-user-container #heading {
-  background: linear-gradient(135deg, #6c757d, #495057);
+  background: linear-gradient(135deg, #3f73a0, #01293f);
 }
 
 .new-user-form {
@@ -133,7 +133,7 @@
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #6c757d, #495057);
+  background: linear-gradient(135deg, #3f73a0, #01293f);
   color: white;
   box-shadow: 0 4px 15px rgba(108, 117, 125, 0.3);
 }
@@ -193,3 +193,59 @@
     padding: 30px 20px;
   }
 }
+
+/* Responsive pour tablettes */
+@media (min-width: 769px) and (max-width: 1200px) {
+  .new-user-container {
+    padding: 20px;
+    min-height: 85vh;
+  }
+
+  .new-user-container .box {
+    max-width: 700px;
+    min-width: 460px;
+    margin-right: 20% !important;
+  }
+
+  .new-user-form {
+    padding: 35px 25px;
+  }
+
+  .color-options {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    padding: 0 5px;
+  }
+
+  .color-option {
+    padding: 18px 12px;
+  }
+
+  .color-preview {
+    width: 65px;
+    height: 42px;
+  }
+
+  .color-option span {
+    font-size: 14px;
+  }
+
+  .input-group input[type="text"] {
+    height: 55px;
+    font-size: 17px;
+  }
+
+  .button-group {
+    gap: 18px;
+    margin-top: 30px;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    padding: 13px 30px;
+    font-size: 15px;
+    min-width: 130px;
+  }
+}
+
+

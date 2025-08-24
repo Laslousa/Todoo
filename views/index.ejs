@@ -1,5 +1,4 @@
 <%- include('partials/header.ejs'); -%>
-
   <script>
     // Appliquer le thème au body
     document.body.className = 'theme-<%= currentUser.color %>';
@@ -9,10 +8,26 @@
     <h2>Family Todo</h2>
     <form action="/changeUser" method="post" class="user-buttons">
       <% for (let user of users) { %>
-        <button type="submit" name="userId" value="<%= user.user_id %>"
-          class="user-btn theme-<%= user.color %> <%= currentUser.user_id === user.user_id ? 'active' : '' %>">
-          <%= user.name %>
-        </button>
+        <div class="user-container">
+          <button type="submit" name="mode" value='["select", <%= user.user_id %>]'
+            class="user-btn theme-<%= user.color %> <%= currentUser.user_id === user.user_id ? 'active' : '' %>">
+            <%= user.name %>
+          </button>
+          <div class="user-actions">
+            <button type="submit" name="mode" value='["edit", <%= user.user_id %>]' class="edit-user-btn">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" class="edit-svg">
+                <path fill="<%= user.color %>"
+                  d="M416.9 85.2L372 130.1L509.9 268L554.8 223.1C568.4 209.6 576 191.2 576 172C576 152.8 568.4 134.4 554.8 120.9L519.1 85.2C505.6 71.6 487.2 64 468 64C448.8 64 430.4 71.6 416.9 85.2zM338.1 164L122.9 379.1C112.2 389.8 104.4 403.2 100.3 417.8L64.9 545.6C62.6 553.9 64.9 562.9 71.1 569C77.3 575.1 86.2 577.5 94.5 575.2L222.3 539.7C236.9 535.6 250.2 527.9 261 517.1L476 301.9L338.1 164z" />
+              </svg>
+            </button>
+            <button type="submit" name="mode" value='["delete", <%= user.user_id %>]' class="delete-user-btn">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                <path fill="<%= user.color %>"
+                  d="M136.7 5.9L128 32 32 32C14.3 32 0 46.3 0 64S14.3 96 32 96l384 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-96 0-8.7-26.1C306.9-7.2 294.7-16 280.9-16L167.1-16c-13.8 0-26 8.8-30.4 21.9zM416 144L32 144 53.1 467.1C54.7 492.4 75.7 512 101 512L347 512c25.3 0 46.3-19.6 47.9-44.9L416 144z" />
+              </svg>
+            </button>
+          </div>
+        </div>
         <% } %>
     </form>
 
@@ -59,7 +74,7 @@
                 <input id="input<%=item.item_id%>" type="text" name="updatedItemTitle" value="<%= item.title %>"
                   autocomplete="off" autofocus="true" hidden="true" />
                 <button id="done<%=item.item_id%>" class="edit" type="submit" hidden>
-                 <img  class="icon" src="/assets/icons/check-solid-<%= currentUser.color %>.svg" alt="tick image">
+                  <img class="icon" src="/assets/icons/check-solid-<%= currentUser.color %>.svg" alt="tick image">
                 </button>
               </form>
               <button id="edit<%=item.item_id%>" class="edit" onclick="handler('<%=item.item_id%>')">

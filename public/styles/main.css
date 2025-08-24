@@ -622,8 +622,8 @@ footer {
     position: relative;
     top: auto;
     left: auto;
-    max-width: none;
-    margin-bottom: 20px;
+    max-width: 300px;
+    margin: 20px auto;
     background: rgba(255, 255, 255, 0.15);
   }
 
@@ -785,4 +785,54 @@ footer {
   .first-load-card h2 {
     font-size: 24px;
   }
+}
+
+/* Conteneur pour chaque utilisateur */
+.user-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+/* Actions pour éditer/supprimer */
+.user-actions {
+  display: flex;
+  gap: 5px;
+  margin-left: 10px;
+}
+
+/* Styles pour les boutons d'édition et suppression */
+.edit-user-btn,
+.delete-user-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: opacity 0.2s ease;
+}
+
+.edit-user-btn:hover,
+.delete-user-btn:hover {
+  opacity: 0.7;
+}
+
+/* Taille des SVG */
+.edit-svg,
+.delete-user-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Ajustement de la disposition des boutons utilisateur */
+.user-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.user-btn {
+  flex: 1;
+  margin-bottom: 0;
 }

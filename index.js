@@ -26,7 +26,6 @@ let addOk = "New Item";
 let currentDate = new Date().toLocaleDateString("en-US", {
   weekday: "long",
 });
-
 app.get("/", async (req, res) => {
   let firstLoad = false;
   try {
@@ -41,7 +40,7 @@ app.get("/", async (req, res) => {
       "SELECT item_id, title FROM items WHERE user_id = $1 ORDER BY item_id",
       [currentUser.user_id]
     );
-    
+
     items = itemsResult.rows;
     users = usersResult.rows;
 
@@ -128,24 +127,69 @@ app.listen(port, () => {
 });
 
 app.post("/changeUser", async (req, res) => {
-  const userId = parseInt(req.body.userId);
-  if (isNaN(userId)) {
-    console.error("Invalid user ID:", userId);
-    return res.redirect("/");
-  }
-  try {
-    // Récupérer les informations de l'utilisateur sélectionné
-    const userResult = await db.query(
-      "SELECT * FROM users WHERE user_id = $1",
-      [userId]
-    );
-    if (userResult.rows.length > 0) {
-      currentUser = userResult.rows[0];
+  const liste = JSON.parse(req.body.mode);
+  const mode = liste[0];
+  const userId = liste[1];
+  if (mode === "select") {
+    if (isNaN(userId)) {
+      console.error("Invalid user ID:", userId);
+      return res.redirect("/");
     }
-    res.redirect("/");
-  } catch (error) {
-    console.error("Error changing user:", error);
-    res.redirect("/");
+    try {
+      // Récupérer les informations de l'utilisateur sélectionné
+      const userResult = await db.query(
+        "SELECT * FROM users WHERE user_id = $1",
+        [userId]
+      );
+      if (userResult.rows.length > 0) {
+        currentUser = userResult.rows[0];
+      }
+      res.redirect("/");
+    } catch (error) {
+      console.error("Error changing user:", error);
+      res.redirect("/");
+    }
+  } else if (mode === "delete") {
+    if (isNaN(userId)) {
+      console.error("Invalid user ID:", userId);
+      return res.redirect("/");
+    }
+    try {
+      try {
+        await db.query("DELETE FROM items WHERE user_id = $1", [userId]);
+      } catch (error) {
+        console.error("Error deleting items for this user:", error);
+      }
+      await db.query("DELETE FROM users WHERE user_id = $1", [userId]);
+      // Si l'utilisateur supprimé est l'utilisateur actuel, revenir au premier utilisateur
+      if (currentUser.user_id === userId) {
+        try {
+          const usersResult = await db.query(
+            "SELECT * from users ORDER BY user_id"
+          );
+          if (usersResult.rows.length > 0) {
+            currentUser = usersResult.rows[0];
+          }
+        } catch (error) {
+          console.error("Error fetching users:", error);
+        }
+      }
+      res.redirect("/");
+    } catch (error) {
+      console.error("Error deleting user:", error);
+      res.redirect("/");
+    }
+  } else if (mode === "edit") {
+    
+
+
+
+
+
+
+
+
+
   }
 });
 
@@ -155,7 +199,7 @@ app.post("/addUser", async (req, res) => {
 
 app.post("/createUser", async (req, res) => {
   const newUserName = req.body.username.trim();
-  const selectedColor = req.body.color ;
+  const selectedColor = req.body.color;
 
   if (!newUserName) {
     return res.redirect("/addUser");
