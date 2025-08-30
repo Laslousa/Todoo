@@ -141,10 +141,6 @@ app.post("/delete", async (req, res) => {
   }
 });
 
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
-});
-
 app.post("/changeUser", async (req, res) => {
   const liste = JSON.parse(req.body.mode);
   const mode = liste[0];
@@ -309,4 +305,8 @@ app.post("/createUser", async (req, res) => {
       res.redirect("/");
     }
   }
+});
+
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
 });

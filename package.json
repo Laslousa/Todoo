@@ -1,16 +1,19 @@
 {
-  "name": "5-capstone---todo-list",
+  "name": "family-todo-app",
   "version": "1.0.0",
-  "description": "",
+  "description": "Family task management with personalized themes",
   "main": "index.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js"
   },
+  "engines": {
+    "node": ">=18"
+  },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Laslousa <elyesbelaid.2005@gmail.com>",
+  "license": "MIT",
   "dependencies": {
     "body-parser": "^1.20.2",
     "ejs": "^3.1.9",
