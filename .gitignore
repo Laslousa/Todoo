@@ -1,0 +1,5 @@
+# Variables d'environnement - NE JAMAIS COMMITER CE FICHIER
+.env
+
+# Dépendances
+node_modules/
