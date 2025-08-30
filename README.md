@@ -27,7 +27,7 @@ A family task management web application with personalized color themes for each
 ## 🚀 Installation
 
 ### Prerequisites
-- Node.js (v14+)
+- Node.js (v18+)
 - PostgreSQL
 - npm or yarn
 
@@ -35,8 +35,8 @@ A family task management web application with personalized color themes for each
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/Laslousa/family-todo-app.git
-   cd family-todo-app
+   git clone https://github.com/Laslousa/Todoo.git
+   cd Todoo
    ```
 
 2. **Install dependencies**
