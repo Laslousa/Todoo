@@ -819,10 +819,13 @@ footer {
 }
 
 /* Taille des SVG */
-.edit-svg,
-.delete-user-btn svg {
+.edit-svg{
   width: 16px;
   height: 16px;
+}
+.delete-svg{
+  width: 18px;
+  height: 18px;
 }
 
 /* Ajustement de la disposition des boutons utilisateur */

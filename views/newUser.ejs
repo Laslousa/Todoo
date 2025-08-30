@@ -4,10 +4,16 @@
     <div class="new-user-container">
         <div class="box">
             <div id="heading">
-                <h1>Add New Family Member</h1>
+                <% if (locals.userToEdit) { %>
+                    <h1>Edit Family Member</h1>
+                    <% } else { %>
+                        <h1>Add New Family Member</h1>
+                        <% } %>
             </div>
 
+
             <form action="/createUser" method="post" class="new-user-form">
+                <input type="hidden" name="userId" value="<%= locals.userToEdit ? userToEdit.user_id : '' %>" />
                 <div class="input-group">
                     <input type="text" name="username" placeholder="Enter name" required />
                 </div>
@@ -144,11 +150,39 @@
                 </div>
 
                 <div class="button-group">
-                    <button type="submit" class="btn-primary">Create Member</button>
-                    <button type="button" class="btn-secondary" onclick="window.location.href='/'">Cancel</button>
+                    <% if (locals.userToEdit) { %>
+                        <button type="submit" class="btn-primary" name="action" value="update">Update Member</button>
+                        <% } else { %>
+                            <button type="submit" class="btn-primary" name="action" value="create">Create
+                                Member</button>
+                            <% } %>
+                                <button type="button" class="btn-secondary"
+                                    onclick="window.location.href='/'">Cancel</button>
                 </div>
             </form>
         </div>
     </div>
+
+    <script>
+        let userToEdit = JSON.stringify(<%- JSON.stringify(locals.userToEdit || null) %>);
+        let userAlreadyExists = JSON.stringify(<%- JSON.stringify(locals.userAlreadyExists || null) %>);
+
+        let username = document.querySelector('input[name="username"]');
+
+        console.log(userToEdit);
+        console.log(userAlreadyExists);
+
+        if (userAlreadyExists != "null") {
+            username.setAttribute("placeholder", JSON.parse(userAlreadyExists));
+        } else if (userToEdit != "null" && userAlreadyExists == "null") {
+            username.setAttribute("value", JSON.parse(userToEdit).name);
+
+            // Présélectionner la couleur de l'utilisateur
+            const colorInput = document.querySelector(`input[name="color"][value="${JSON.parse(userToEdit).color}"]`);
+            if (colorInput) {
+                colorInput.checked = true;
+            }
+        }
+    </script>
 
     <%- include('partials/footer.ejs'); -%>
