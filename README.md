@@ -27,7 +27,7 @@ A family task management web application with personalized color themes for each
 ## 🚀 Installation
 
 ### Prerequisites
-- Node.js (v14+)
+- Node.js (v18+)
 - PostgreSQL
 - npm or yarn
 
